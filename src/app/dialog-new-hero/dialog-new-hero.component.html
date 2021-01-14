@@ -1,0 +1,12 @@
+<form #heroFormAjout="ngForm" id="heroFormAjout">
+    <mat-form-field class="input-full-width">
+        <input type="text" name="nom" required minlength="2" maxlength="50" [(ngModel)]="newHero.nom" matInput #nom="ngModel" placeholder="Nouveau héro">
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('required')">Le nom est obligatoire.</mat-error>
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
+        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched) && nom.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onAnnulerClick()">Anuler</button>
+        <button mat-button [mat-dialog-close]="newHero" cdkFocusInitial>Ok</button>
+      </div>
+ </form>

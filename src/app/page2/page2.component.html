@@ -1,0 +1,16 @@
+<div>    
+    Page 2
+    <div><app-entete></app-entete></div>
+    <div class="flex-container">
+        <div>
+            <app-recherche></app-recherche>
+        </div>
+        <div>
+            <div><app-carousel></app-carousel></div>
+            <div *ngFor="let hero of heros">
+                <app-hero [nom]="hero.nom"></app-hero>
+            </div>
+        </div>
+    </div>
+    <div><app-pied-page></app-pied-page></div>
+</div>

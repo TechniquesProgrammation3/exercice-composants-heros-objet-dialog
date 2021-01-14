@@ -1,0 +1,45 @@
+<button matSuffix  type="submit" mat-icon-button color="primary" (click)="openDialogNewHero()"><i class="material-icons">add</i></button>
+
+<table mat-table #tableHeros [dataSource]="heros">
+
+    <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let hero">
+            <form #heroFormEdition="ngForm" id="heroFormEdition" (ngSubmit)="heroFormEdition.form.valid && 
+ onEdit(heroFormEdition)">
+                <mat-form-field *ngIf="(selectedHero && selectedHero === hero);else editNom;" class="input-full-width">
+                    <input name="selectedHeroNom" [(ngModel)]="selectedHero.nom" matInput required minlength="2" 
+ maxlength="50" name="nomEdition" #nomEdition="ngModel">
+                    <mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) && 
+ nomEdition.hasError('required')">Le nom est obligatoire.</mat-error>
+                    <mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) && 
+ nomEdition.hasError('minlength')">Le nom doit contenir au moins 2 caractères.</mat-error>
+                    <mat-error *ngIf="nomEdition.invalid && (nomEdition.dirty || nomEdition.touched) && 
+ nomEdition.hasError('maxlength')">Le nom doit contenir au maximum 50 caractères.</mat-error>
+                </mat-form-field>
+            </form>
+            <ng-template #editNom><span (click)="onSelect(hero)">{{hero.nom}}</span></ng-template>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let hero" class="boutonsAction">
+            <button *ngIf="(selectedHero && selectedHero === hero);else editButton;" color="primary" form="heroFormEdition" 
+     mat-button><i class="material-icons">done</i></button>
+            <ng-template #editButton>
+                <form (ngSubmit)="onSelect(hero)">
+                    <button mat-button><i class="material-icons">edit</i></button>
+                </form>
+            </ng-template>
+            <form (ngSubmit)="onDelete(hero)">
+                <button mat-button ><i class="material-icons">delete</i></button>
+            </form>
+        </td>
+     </ng-container>
+ 
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+ 
+ </table>
+ 
