@@ -3,7 +3,7 @@ import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import {MatTable} from '@angular/material/table';  // Permet de mettre à jour les données du tableau 
 import { NgForm } from '@angular/forms';  // Permet de vérifier si le formulaire est valide
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { DialogNewHeroComponent } from '../dialog-new-hero/dialog-new-hero.component';
 
 
