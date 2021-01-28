@@ -36,7 +36,7 @@ export class TableHerosComponent implements OnInit {
   openDialogNewHero(): void {
     const dialogRef = this.dialog.open(DialogNewHeroComponent, {
       width: '250px',
-      data: {hero: this.newHero}
+      data: this.newHero
     });
 
     dialogRef.afterClosed().subscribe(result => {
